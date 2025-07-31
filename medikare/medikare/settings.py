@@ -39,10 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'drf_spectacular',
+    'drf_spectacular_sidecar',  
     'corsheaders',
     'accounts',
     'doctors',
     'appointments',
+
 ]
 
 MIDDLEWARE = [
@@ -57,7 +60,9 @@ MIDDLEWARE = [
 ]
 
 REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
@@ -136,3 +141,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True
 AUTH_USER_MODEL = 'accounts.User'
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'API Médicale SaaS',
+    'DESCRIPTION': 'Documentation de l’API pour la plateforme de prise de rendez-vous avec des médecins',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
