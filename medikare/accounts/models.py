@@ -36,11 +36,3 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return f"{self.full_name} ({self.phone})"
 
-
-class PatientProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    birth_date = models.DateField(null=True, blank=True)
-    gender = models.CharField(max_length=10, choices=[('male', 'Homme'), ('female', 'Femme')], blank=True)
-
-    def __str__(self):
-        return self.user.full_name
